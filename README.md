@@ -1,36 +1,49 @@
-# HW 4: Prim's algorithm
+![BuildStatus](https://github.com/AmazonRF/HW4-PRIM-MST/actions/workflows/pytest.yml/badge.svg?event=push)
 
-In this assignment, you'll implement Prim's algorithm, a non-trivial greedy algorithm used to construct minimum spanning trees. 
+## Minimum Spanning Tree Implementation and Validation
 
-## Tasks
+This project includes an implementation of Prim's algorithm to construct a Minimum Spanning Tree (MST) from a given undirected, weighted graph. The implementation is provided in Python and utilizes NumPy for matrix operations. Additionally, the project includes validation functions to ensure the correctness of the constructed MST based on several key properties.
 
-### Coding
+## Features
 
-* [TODO] Complete the `construct_mst` method found in `mst/graph.py`. All necessary modules have already been imported. You should not rely on any other dependencies (e.g. networkx). 
+- **Prim's Algorithm Implementation**: Constructs an MST from an adjacency matrix representing an undirected, weighted graph.
+- **MST Validation**: Includes checks for the correct number of edges, connectivity, absence of cycles, and minimum total weight to validate the constructed MST.
+- **Graph Representations**: Supports loading graphs from both NumPy arrays and CSV files containing adjacency matrices.
 
-### Development
+## Getting Started
 
-* [TODO] Add more assertions to the `check_mst` function in `test/test_mst.py`.
-* [TODO] Write at least one more unit test (in the `test_mst.py` file) for your `construct_mst` implementation. (Two unit tests have already been provided: the first operates on a small graph of four nodes, and the second on a larger graph of 140 single cells, projected onto a lower dimensional subspace.)
-* [Optional] Make your package `pip` installable. (Refer to prevous assignments for more in-depth information.)
-* [Optional] Automate testing with `pytest` and GitHub Actions, and add a status badge to this README file. (Refer to previous assignments for more in-depth information.)
+### Prerequisites
 
-## Getting started
+- Python 3.x
+- NumPy
 
-Fork this repository to your own GitHub account. Work on the codebase locally and commit changes to your forked repository. 
+### Installation
 
-You will need following packages:
+Ensure you have Python and NumPy installed. You can install NumPy using pip if you haven't already:
 
-- [numpy](https://numpy.org/)
-- [scikit-learn](https://scikit-learn.org/)
-- [pytest](https://docs.pytest.org/en/7.2.x/)
+```bash
+pip install numpy
 
-We also strongly recommend you use the built-in [heapq](https://docs.python.org/3/library/heapq.html) module.
+### Usage
 
-## Completing the assignment
+1. **Graph Initialization**: Initialize a `Graph` object with an adjacency matrix or a path to a CSV file containing the adjacency matrix.
 
-Push your code to GitHub with passing unit tests, and submit a link to your repository through this [google form link](https://forms.gle/guyuWE6hsTiz34WTA)
+    ```python
+    from graph import Graph
+    graph = Graph(adjacency_mat='path/to/your/adjacency_matrix.csv')
+    # OR
+    graph = Graph(adjacency_mat=your_numpy_array)
+    ```
 
+2. **Constructing the MST**: Call the `construct_mst` method on your `Graph` object to construct the MST.
+
+    ```python
+    graph.construct_mst()
+    ```
+
+3. **Validating the MST**: Use the provided validation assertions within the `verify_mst_properties` function to ensure the correctness of the constructed MST. Implement the necessary functions for connectivity and weight checks as required.
+
+Readme file above are generated with the help of chatGPT.
 ## Grading
 
 ### Code (6 points)
