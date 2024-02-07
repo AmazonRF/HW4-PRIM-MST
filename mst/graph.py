@@ -21,6 +21,10 @@ class Graph:
             raise TypeError('Input must be a valid path or an adjacency matrix')
         self.mst = None
 
+        if np.min(self.adj_mat)<0:
+            print("aa")
+            raise ValueError('Edge could not be negative')
+
     def _load_adjacency_matrix_from_csv(self, path: str) -> np.ndarray:
         with open(path) as f:
             return np.loadtxt(f, delimiter=',')
