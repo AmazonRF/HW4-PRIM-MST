@@ -75,8 +75,21 @@ def test_mst_single_cell_data():
     check_mst(g.adj_mat, g.mst, 57.263561605571695)
 
 
-# def test_mst_student():
-#     """
+def test_mst_student():
+    """
+    
+    TODO: Write at least one unit test for MST construction.
+    
+    """
+    #My unit test 1: Input test type
+    with pytest.raises(Exception, match='Input must be a valid path or an adjacency matrix'):
+        g_single_node = Graph(0)
+        g_single_node.construct_mst()
+
+    #My unit test 2: Input test, make sure all the edge are positive.
+    negInput = 'data/small_neg.csv'
+    with pytest.raises(Exception, match='Edge could not be negative'):
+        g_neg = Graph(negInput)
     
 #     TODO: Write at least one unit test for MST construction.
     
