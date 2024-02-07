@@ -50,12 +50,12 @@ class Graph:
         # Use a value greater than the maximum edge weight in the graph as a placeholder, i am not use inf here because the format issue
         maxi_val = np.max(graph) + 2
         graph[graph ==0] = maxi_val  # Replace zero weights to avoid considering non-edges.
-
         # List to keep track of vertices included in the MST.
         mst_node = []
 
         # Number of vertices in the graph.
         graph_node_no = int(graph.shape[0])
+
         # Initialize an empty adjacency matrix for the MST.
         output_path = np.zeros(graph.shape)
 
@@ -79,15 +79,17 @@ class Graph:
             next_node_mother = mst_node[np.argmin(potential_next_edge)]
             
             # Break the loop if no valid next node is found (i.e., all remaining edges are maxi_val).
-            if np.min(potential_next_edge) <=0 or np.min(potential_next_edge)==maxi_val:break
+            # if np.min(potential_next_edge) <=0 or np.min(potential_next_edge)==maxi_val:break
             
             # Update the MST adjacency matrix to include the new edge.
             output_path[next_node][next_node_mother] = 1
             output_path[next_node_mother][next_node] = 1
 
             # Mark the newly added edge as maxi_val in the original graph to prevent it from re-visit
-            graph[node][next_node] = maxi_val
-            graph[next_node][node] = maxi_val
+            for node_ in mst_node:
+                graph[node_][next_node] = maxi_val
+                graph[next_node][node_] = maxi_val
             mst_node.append(next_node)
+            # print(mst_node,len(mst_node))
 
         self.mst = output_path*self.adj_mat

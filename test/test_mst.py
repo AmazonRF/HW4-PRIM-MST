@@ -30,11 +30,20 @@ def check_mst(adj_mat: np.ndarray,
         return abs(a - b) < allowed_error
 
     total = 0
+    edge_number = 0
+    node_number = adj_mat.shape[0]
     for i in range(mst.shape[0]):
         for j in range(i+1):
             total += mst[i, j]
+            if mst[i, j]>0:edge_number += 1 
 
+    #Given assertion
     assert approx_equal(total, expected_weight), 'Proposed MST has incorrect expected weight'
+    #My assertion 1: minimum spanning trees always connected and the edges number is N-1. N:node number
+    assert node_number - 1  == edge_number , 'Proposed MST has incorrect expected edges number'
+    #My assertion 2: MST and original graph must have the same dimensions.
+    assert mst.shape == adj_mat.shape, "MST and original graph must have the same dimensions."
+
 
 
 def test_mst_small():
@@ -49,21 +58,21 @@ def test_mst_small():
     check_mst(g.adj_mat, g.mst, 8)
 
 
-# def test_mst_single_cell_data():
-#     """
+def test_mst_single_cell_data():
+    """
     
-#     Unit test for the construction of a minimum spanning tree using single cell
-#     data, taken from the Slingshot R package.
+    Unit test for the construction of a minimum spanning tree using single cell
+    data, taken from the Slingshot R package.
 
-#     https://bioconductor.org/packages/release/bioc/html/slingshot.html
+    https://bioconductor.org/packages/release/bioc/html/slingshot.html
 
-#     """
-#     file_path = './data/slingshot_example.txt'
-#     coords = np.loadtxt(file_path) # load coordinates of single cells in low-dimensional subspace
-#     dist_mat = pairwise_distances(coords) # compute pairwise distances to form graph
-#     g = Graph(dist_mat)
-#     g.construct_mst()
-#     check_mst(g.adj_mat, g.mst, 57.263561605571695)
+    """
+    file_path = './data/slingshot_example.txt'
+    coords = np.loadtxt(file_path) # load coordinates of single cells in low-dimensional subspace
+    dist_mat = pairwise_distances(coords) # compute pairwise distances to form graph
+    g = Graph(dist_mat)
+    g.construct_mst()
+    check_mst(g.adj_mat, g.mst, 57.263561605571695)
 
 
 # def test_mst_student():
