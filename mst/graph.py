@@ -1,5 +1,5 @@
 import numpy as np
-import heapq
+# import heapq
 from typing import Union
 
 class Graph:
