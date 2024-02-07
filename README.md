@@ -19,10 +19,8 @@ This project includes an implementation of Prim's algorithm to construct a Minim
 
 ### Installation
 
-Ensure you have Python and NumPy installed. You can install NumPy using pip if you haven't already:
+Ensure you have Python and NumPy installed. You can install NumPy using requirments.txt if you haven't already:
 
-```bash
-pip install numpy
 
 ### Usage
 
