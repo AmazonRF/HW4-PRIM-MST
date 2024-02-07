@@ -91,7 +91,3 @@ def test_mst_student():
     with pytest.raises(Exception, match='Edge could not be negative'):
         g_neg = Graph(negInput)
     
-#     TODO: Write at least one unit test for MST construction.
-    
-#     """
-#     pass
